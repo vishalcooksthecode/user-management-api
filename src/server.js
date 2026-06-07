@@ -4,7 +4,7 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
-const app = express();
+const app  = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -23,6 +23,7 @@ app.use((req, res) => res.status(404).json({ message: "Route not found" }));
 // Error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// Must listen on 0.0.0.0 for Render
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
